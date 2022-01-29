@@ -1,3 +1,4 @@
+#![no_std]
 //! # Lifetime Abstractions
 //!
 //! A _lifetime abstraction_ is a type with a bound placeholder lifetime that can later be replaced
@@ -193,7 +194,7 @@
 //! [streaming-iterator-article]:http://lukaskalbertodt.github.io/2018/08/03/solving-the-generalized-streaming-iterator-problem-without-gats.html
 //! [constrain-closure]:https://stackoverflow.com/a/46198877
 
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 /// Helper traits for type-level application of closures (and function pointers).
 ///
