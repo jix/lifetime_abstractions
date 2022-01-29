@@ -127,44 +127,11 @@ type Expanded<'outer> = Lt!(for<'a> &'a [&'outer str]);
 
 ## Implementation
 
-Lifetime abstractions `Lt!(for<'a> Something<'a>)` are represented using function pointer
-types of the form `for<'a> fn(Lt<'a>) -> Something<'a>`.
-
-The `Lt<'a>` type's only role is to ensures that the lifetime is invariant and that
-it appears in argument position. It would be possible to use `&'a mut ()` instead. Using a
-custom type has the advantage that error messages will point to this crate.
-
-Instead of function pointers, it would also be possible to use trait objects of a custom trait.
-`for<'a> dyn AbsTrait<Lt<'a>, Output=Something<'a>>`. One downside of this is that it breaks
-lifetime elision within abstractions. Another is that trait objects are unsized, so this would
-either require `?Sized` bounds in user code or some additional indirection. Finally, while for
-writing type abstractions we could hide this more verbose syntax behind the `Lt!` macro, it
-would still appear in error messages.
-
-While the special syntax for function pointer types makes this much more readable, the downside
-is that there is no direct type-level way to get the output type of a function pointer given
-only the argument type. This is important as it is exactly what is needed to implement
-`LtApply<'a, T>`, which is the return type of the function pointer `T` for the
-argument `Lt<'a>`.
-
-With some helper traits in `fn_helpers` this can be worked around.
-`FnOutput1` makes the output type available given only the argument
-type. `FnBound1` asserts that this indeed matches the output type of
-the function pointer. The latter is needed to avoid "implementation is not general enough"
-errors when [HRTBs] are involved.
-
-Finally, the `LtAbs` trait has the bound `for<'a> FnOutput1<Lt<'a>>` together with a blanket
-impl for all such types.
-
-[HRTBs]:https://doc.rust-lang.org/reference/trait-bounds.html#higher-ranked-trait-bounds
+TODO rewrite
 
 ## MSRV
 
-This implementation is compatible with `rustc 1.46.0` and newer. On older versions checking of
-the trait bounds on `FnBound1` fails. The alternative implementation
-using trait objects, mentioned above, seems to work down to `rustc 1.17.0`. Given the downsides
-of that alternative also mentioned above, I do not plan to support versions older than `rustc
-1.46.0`.
+TODO retest
 
 ## Alternatives, Prior Art and Limitations
 
@@ -180,6 +147,8 @@ types or traits for each use and/or have limiting `'static` bounds in some place
 Lukas Kalbertodt's article ["Solving the Generalized Streaming Iterator Problem without
 GATs"][streaming-iterator-article] has a nice overview of some of these alternatives and their
 limitations.
+
+TODO mention the implicit fixed `Sized` bound
 
 The only limitation of this approach I've run into so far is that it sometimes requires
 additional type hints in places where I would expect type inference to be sufficient. This
