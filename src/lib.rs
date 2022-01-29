@@ -200,13 +200,14 @@ use core::marker::PhantomData;
 ///
 /// These can be freely used, but are not necessary when using the API exported from crate root.
 pub mod fn_helpers {
-    /// Helper trait used to recover the output type of a 1-argument closure given only the input type.
+    /// Helper trait used to recover the output type of a 1-argument closure given only the input
+    /// type.
     ///
     /// For convenience, you can access the output type using the [`Apply1`] type alias.
     ///
     /// Using the unstable `unboxed_closures` feature we could use `FnOnce<(Arg,)>` instead, but
-    /// currently on stable Rust we always have to use the `FnOnce(Arg) -> Output` syntax which requires
-    /// us to constrain the output.
+    /// currently on stable Rust we always have to use the `FnOnce(Arg) -> Output` syntax which
+    /// requires us to constrain the output.
     pub trait FnOutput1<Arg> {
         /// The output type returned by the closure.
         type FnOutput1;
@@ -225,8 +226,8 @@ pub mod fn_helpers {
 
     /// Trait of 1-argument closures with an unconstrained output type.
     ///
-    /// This has [`FnOutput1`] and [`FnOnce`] as supertypes. It uses [`FnOutput1`] to recover the output
-    /// required for the [`FnOnce`] bound on stable Rust.
+    /// This has [`FnOutput1`] and [`FnOnce`] as supertypes. It uses [`FnOutput1`] to recover the
+    /// output required for the [`FnOnce`] bound on stable Rust.
     pub trait FnBound1<Arg>:
         FnOutput1<Arg> + FnOnce(Arg) -> <Self as FnOutput1<Arg>>::FnOutput1
     {
