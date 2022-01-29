@@ -1,8 +1,18 @@
 [package]
 name = "lifetime_abstractions"
 version = "0.1.0"
-edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = """\
+    Lifetime abstractions are types with a bound placeholder lifetime with \
+    type-level operations to replace placeholders with different lifetimes. \
+    Can be used to emulate lifetime parameter only GATs."""
+keywords = ["lifetime", "typelevel", "GAT", "GATs"]
+categories = ["no-std", "rust-patterns", "memory-management"]
+repository = "https://github.com/jix/lifetime_abstractions"
+
+license = "0BSD"
+
+edition = "2018"
+rust-version = "1.46"
 
 [dependencies]

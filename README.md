@@ -1,5 +1,9 @@
 # Lifetime Abstractions
 
+[![github][github-badge]][github]
+[![crates.io][crate-badge]][crate]
+[![docs.rs][docs-badge]][docs]
+
 A _lifetime abstraction_ is a type with a bound placeholder lifetime that can later be replaced
 with a different lifetime. As such they can be seen as a type-level function from lifetimes to
 types.
@@ -185,3 +189,21 @@ technique to add a sufficiently generic type hint to a closure][constrain-closur
 [streaming-iterator-article]:http://lukaskalbertodt.github.io/2018/08/03/solving-the-generalized-streaming-iterator-problem-without-gats.html
 [constrain-closure]:https://stackoverflow.com/a/46198877
 
+## License
+
+This software is available under the Zero-Clause BSD license, see
+[LICENSE](LICENSE) for full licensing information.
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this software by you shall be licensed as defined in
+[LICENSE](LICENSE).
+
+[github]:https://github.com/jix/lifetime_abstractions
+[crate]:https://crates.io/crates/lifetime_abstractions
+[docs]:https://docs.rs/lifetime_abstractions/*/lifetime_abstractions
+
+[github-badge]: https://img.shields.io/badge/github-jix/lifetime_abstractions-blueviolet?style=flat-square
+[crate-badge]: https://img.shields.io/crates/v/lifetime_abstractions?style=flat-square
+[docs-badge]: https://img.shields.io/badge/docs.rs-lifetime_abstractions-informational?style=flat-square
